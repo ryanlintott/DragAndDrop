@@ -7,18 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF633BD528F6876C00731287 /* Providable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF633BD428F6876C00731287 /* Providable.swift */; };
 		CFF37A1D28F5ED1A00E967FB /* DragAndDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF37A1C28F5ED1A00E967FB /* DragAndDropApp.swift */; };
 		CFF37A1F28F5ED1A00E967FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF37A1E28F5ED1A00E967FB /* ContentView.swift */; };
 		CFF37A2128F5ED1A00E967FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFF37A2028F5ED1A00E967FB /* Assets.xcassets */; };
 		CFF37A2428F5ED1A00E967FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFF37A2328F5ED1A00E967FB /* Preview Assets.xcassets */; };
+		CFF37A2B28F5ED5100E967FB /* Bird.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF37A2A28F5ED5100E967FB /* Bird.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF633BD428F6876C00731287 /* Providable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providable.swift; sourceTree = "<group>"; };
 		CFF37A1928F5ED1A00E967FB /* DragAndDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragAndDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF37A1C28F5ED1A00E967FB /* DragAndDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropApp.swift; sourceTree = "<group>"; };
 		CFF37A1E28F5ED1A00E967FB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CFF37A2028F5ED1A00E967FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFF37A2328F5ED1A00E967FB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CFF37A2A28F5ED5100E967FB /* Bird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bird.swift; sourceTree = "<group>"; };
+		CFF37A2E28F6011A00E967FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +56,11 @@
 		CFF37A1B28F5ED1A00E967FB /* DragAndDrop */ = {
 			isa = PBXGroup;
 			children = (
+				CFF37A2E28F6011A00E967FB /* Info.plist */,
 				CFF37A1C28F5ED1A00E967FB /* DragAndDropApp.swift */,
 				CFF37A1E28F5ED1A00E967FB /* ContentView.swift */,
+				CFF37A2A28F5ED5100E967FB /* Bird.swift */,
+				CF633BD428F6876C00731287 /* Providable.swift */,
 				CFF37A2028F5ED1A00E967FB /* Assets.xcassets */,
 				CFF37A2228F5ED1A00E967FB /* Preview Content */,
 			);
@@ -138,6 +146,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFF37A1F28F5ED1A00E967FB /* ContentView.swift in Sources */,
+				CF633BD528F6876C00731287 /* Providable.swift in Sources */,
+				CFF37A2B28F5ED5100E967FB /* Bird.swift in Sources */,
 				CFF37A1D28F5ED1A00E967FB /* DragAndDropApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,11 +280,13 @@
 				DEVELOPMENT_TEAM = 97423JQ8B9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DragAndDrop/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -299,11 +311,13 @@
 				DEVELOPMENT_TEAM = 97423JQ8B9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DragAndDrop/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
