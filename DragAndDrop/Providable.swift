@@ -8,36 +8,22 @@
 import Foundation
 import UniformTypeIdentifiers
 
-protocol ProvidableItem: Codable {
-    associatedtype Wrapper: Providable where Wrapper.Item == Self
-    static var uti: UTType { get }
-    static var name: String { get }
+protocol Providable: Codable {
+    associatedtype Wrapper: ProvidableWrapper where Wrapper.Item == Self
 }
 
-extension ProvidableItem {
+extension Providable {
     var provider: NSItemProvider {
         .init(object: Wrapper(self))
     }
     
-    init(provider: NSItemProvider) async throws {
-        self = try await withCheckedThrowingContinuation { continuation in
-            if provider.canLoadObject(ofClass: Wrapper.self) {
-                _ = provider.loadObject(ofClass: Wrapper.self) { wrapper, error in
-                    if let error {
-                        continuation.resume(throwing: error)
-                        return
-                    }
-                    if let wrapper = wrapper as? Wrapper {
-                        continuation.resume(returning: wrapper.item)
-                    }
-                }
-            }
-        }
+    static func load(from provider: NSItemProvider, completionHandler: @escaping (Self?, Error?) -> Void) {
+        provider.loadItem(Self.self, completionHandler: completionHandler)
     }
 }
 
 extension NSItemProvider {
-    func loadItem<T: ProvidableItem>(_ itemType: T.Type, completionHandler: @escaping (T?, Error?) -> Void) {
+    func loadItem<T: Providable>(_ itemType: T.Type, completionHandler: @escaping (T?, Error?) -> Void) {
         if canLoadObject(ofClass: T.Wrapper.self) {
             _ = loadObject(ofClass: T.Wrapper.self) { wrapper, error in
                 if let error {
@@ -55,17 +41,19 @@ extension NSItemProvider {
 }
 
 extension [NSItemProvider] {
-    func loadItems<T: ProvidableItem>(_ itemType: T.Type, completionHandler: @escaping (T?, Error?) -> Void) {
+    func loadItems<T: Providable>(_ itemType: T.Type, completionHandler: @escaping (T?, Error?) -> Void) {
         forEach { provider in
             provider.loadItem(itemType, completionHandler: completionHandler)
         }
     }
 }
 
-protocol Providable: NSItemProviderWriting, NSItemProviderReading {
-    associatedtype Item: ProvidableItem where Item.Wrapper == Self
+protocol ProvidableWrapper: AnyObject, NSObjectProtocol, NSItemProviderWriting, NSItemProviderReading {
+    associatedtype Item: Providable where Item.Wrapper == Self
     var item: Item { get }
     init(_: Item)
+    static var uti: UTType { get }
+    static var name: String { get }
     static var writableTypes: [UTType] { get }
     static var readableTypes: [UTType] { get }
 }
