@@ -1,8 +1,9 @@
 # DragAndDrop
-Simple drag and drop with custom objects in iOS 14.
+Simple drag and drop implementation with custom objects in iOS 14.
 
 ## Demo
 
+<img width="250" alt="" src="https://user-images.githubusercontent.com/2143656/195680033-2a22ccb1-bc9c-4a87-aa05-05082ead4f4e.gif">
 
 ## Making your custom type draggable
 
@@ -19,6 +20,8 @@ struct Bird: Codable {
 Project > Target > Info > Exported Type Identifiers
 
 <img width="814" alt="image" src="https://user-images.githubusercontent.com/2143656/195647322-301e2d2e-8bcd-42a7-8d22-870836066832.png">
+
+- Add `Providable.swift` to your project.
 
 - Add an extension that conforms your object to `Providable`
 - Add a new final class `Wrapper` that inherits from `NSObject` and conforms to `ProvidableWrapper`
