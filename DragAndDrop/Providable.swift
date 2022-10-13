@@ -57,3 +57,7 @@ protocol ProvidableWrapper: AnyObject, NSObjectProtocol, NSItemProviderWriting, 
     static var writableTypes: [UTType] { get }
     static var readableTypes: [UTType] { get }
 }
+
+enum ProvidableError: Error {
+    case unsupportedUTIIdentifier
+}

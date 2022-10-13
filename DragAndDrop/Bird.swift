@@ -56,7 +56,7 @@ extension Bird: Providable {
                     let data = try JSONEncoder().encode(item)
                     completionHandler(data, nil)
                 default:
-                    throw DecodingError.valueNotFound(Bird.self, .init(codingPath: [], debugDescription: "No Birds"))
+                    throw ProvidableError.unsupportedUTIIdentifier
                 }
             } catch {
                 completionHandler(nil, error)
@@ -67,14 +67,14 @@ extension Bird: Providable {
         static func object(withItemProviderData data: Data, typeIdentifier: String) throws -> Self {
             switch typeIdentifier {
             case Self.uti.identifier:
-                let bird = try JSONDecoder().decode(Bird.self, from: data)
-                return .init(bird)
+                let item = try JSONDecoder().decode(Item.self, from: data)
+                return .init(item)
             case UTType.plainText.identifier:
                 let string = String(decoding: data, as: UTF8.self)
-                let bird = Bird(name: string)
-                return .init(bird)
+                let item = Bird(name: string)
+                return .init(item)
             default:
-                throw DecodingError.valueNotFound(Bird.self, .init(codingPath: [], debugDescription: "No Birds"))
+                throw ProvidableError.unsupportedUTIIdentifier
             }
         }
     }
