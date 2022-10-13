@@ -8,59 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var birds1 = Bird.examples
-    @State private var birds2 = Bird.examples
+    @State private var birds1: [Bird] = Bird.examples
+    @State private var birds2: [Bird] = []
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(birds1) { bird in
-                    Text(bird.name)
-                        .onDrag {
-                            bird.provider
-                        }
+        NavigationView {
+            VStack {
+                VStack {
+                    Text(
+"""
+- Drag birds to reorder.
+- Drag from one list to another.
+- While dragging tap to add additional birds.
+- Drag string from below.
+- Drag strings from any app.
+"""
+                    )
+                    
+                    Text("StringBird")
+                        .padding()
+                        .onDrag { NSItemProvider(object: "StringBird" as NSString) }
                 }
-                .onInsert(of: Bird.Wrapper.readableTypes) { index, itemProviders in
-                    itemProviders.reversed().loadItems(Bird.self) { bird, error in
-                        if let bird {
-                            birds1.insert(bird, at: index)
-                        }
-                    }
-                }
-                .onMove {
-                    birds1.move(fromOffsets: $0, toOffset: $1)
-                }
-                .onDelete {
-                    birds1.remove(atOffsets: $0)
-                }
-            }
-            
-            List {
-                ForEach(birds2) { bird in
-                    Text(bird.name)
-                        .onDrag {
-                            bird.provider
-                        }
-                }
-                .onInsert(of: Bird.Wrapper.readableTypes) { index, itemProviders in
-                    itemProviders.reversed().loadItems(Bird.self) { bird, error in
-                        if let bird {
-                            birds2.insert(bird, at: index)
-                        }
-                    }
-                }
-                .onMove {
-                    birds2.move(fromOffsets: $0, toOffset: $1)
-                }
-                .onDelete {
-                    birds2.remove(atOffsets: $0)
+                .padding()
+                
+                HStack {
+                    BirdList(birds: $birds1)
+                    BirdList(birds: $birds2)
                 }
             }
-            
-            Text("Hand")
-                .onDrag { Bird(name: "HandBird").provider }
+            .navigationTitle("Drag and Drop")
         }
-        .padding()
     }
 }
 
