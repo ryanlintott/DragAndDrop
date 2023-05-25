@@ -5,8 +5,7 @@ Drag and drop implementation with move and insert in iOS 14 and iOS 16.
 
 <img width="250" alt="" src="https://user-images.githubusercontent.com/2143656/195680033-2a22ccb1-bc9c-4a87-aa05-05082ead4f4e.gif">
 
-## Making your custom type draggable in iOS 14
-
+## Making a new draggable type
 - Start with a `Codable` object that you want to drag and drop.
 
 ```swift
@@ -20,6 +19,18 @@ struct Bird: Codable {
 Project > Target > Info > Exported Type Identifiers
 
 <img width="814" alt="image" src="https://user-images.githubusercontent.com/2143656/195647322-301e2d2e-8bcd-42a7-8d22-870836066832.png">
+
+- Add your type as an extension to UTType
+
+```swift
+import UniformTypeIdentifiers
+
+extension UTType {
+    static let bird = UTType("com.ryanlintott.draganddrop.bird") ?? .data
+}
+```
+
+## Making your custom type draggable in iOS 14
 
 - Add `Providable.swift` to your project.
 
@@ -50,7 +61,7 @@ required init(_ item: Item) {
 
 ```swift
 static var name = "bird"
-static var uti = UTType("com.yourname.yourappname.bird") ?? .data
+static var uti = UTType.bird
 ```
 
 - Add arrays of writable and readable types as `UTType`
@@ -114,13 +125,15 @@ static func object(withItemProviderData data: Data, typeIdentifier: String) thro
 Once your type conforms to `Providable`, adding SwiftUI drag and drop modifiers is easy!
 
 ### onDrag
+Make any view draggable by adding this modifier.
 ```swift
 .onDrag { bird.provider }
 ```
 
 ### onDrop
+Any view can be a drop destination. Add the dropped items using the action, use the location for animation if you like, and use the isTargeted binding to animate the view when droppable content is hovering.
 ```swift
-.onDrop(of: Bird.Wrapper.readableTypes, isTargeted: nil) { providers, location in
+.onDrop(of: Bird.Wrapper.readableTypes, isTargeted: $isTargeted) { providers, location in
     providers.reversed().loadItems(Bird.self) { bird, error in
         if let bird {
             birds.append(bird)
@@ -131,6 +144,7 @@ Once your type conforms to `Providable`, adding SwiftUI drag and drop modifiers 
 ```
 
 ### onInsert(of:)
+When added to ForEach dropped items can be inserted in-between other items.
 ```
 .onInsert(of: Bird.Wrapper.readableTypes) { index, providers in
     providers.reversed().loadItems(Bird.self) { bird, error in
@@ -141,5 +155,52 @@ Once your type conforms to `Providable`, adding SwiftUI drag and drop modifiers 
 }
 ```
 
+## Making your custom type draggable in iOS 16
+
+- Conform your object to `Transferable`
+- Add the `transferRepresetation` property and include a `DataRepresentation` for your custom type along with any other compatible types as import types, export types, or both.
+
+```swift
+static var transferRepresentation: some TransferRepresentation {
+    DataRepresentation(contentType: .bird) { bird in
+        try JSONEncoder().encode(bird)
+    } importing: { data in
+        try JSONDecoder().decode(Bird.self, from: data)
+    }
+
+    DataRepresentation(importedContentType: .plainText) { data in
+        let string = String(decoding: data, as: UTF8.self)
+        return Bird(name: string)
+    }
+}
+```
+
+## Adding drag and drop to your SwiftUI views
+Once your type conforms to `Transferable`, adding SwiftUI drag and drop modifiers is easy!
+
+### draggable(\_:)
+Make any view draggable by adding this modifier
+```swift
+.draggable(bird)
+```
+
+### dropDestination(for:,action:,isTargetted:)
+Any view can be a drop destination. Add the dropped items using the action, use the location for animation if you like, and use the isTargeted closure to animate the view when droppable content is hovering.
+```swift
+.dropDestination(for: Bird.self) { droppedBirds, location in
+    birds.append(contentsOf: droppedBirds)
+    return true
+} isTargeted: {
+    isTargetted = $0
+}
+```
+
+### dropDestination(for:,action:)
+When added to ForEach dropped items can be inserted in-between other items.
+```
+.dropDestination(for: Bird.self) { droppedBirds, offset in
+    birds.insert(contentsOf: droppedBirds, at: offset)
+}
+```
 
 
