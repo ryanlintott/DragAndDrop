@@ -1,5 +1,5 @@
 //
-//  BirdList.swift
+//  BirdListProvidable.swift
 //  DragAndDrop
 //
 //  Created by Ryan Lintott on 2022-10-13.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BirdList: View {
+struct BirdListProvidable: View {
     @Binding var birds: [Bird]
     
     var body: some View {
@@ -54,6 +54,6 @@ struct BirdList: View {
 
 struct BirdList_Previews: PreviewProvider {
     static var previews: some View {
-        BirdList(birds: .constant(Bird.examples))
+        BirdListProvidable(birds: .constant(Bird.examples))
     }
 }

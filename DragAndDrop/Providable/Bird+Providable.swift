@@ -20,7 +20,7 @@ extension Bird: Providable {
         }
         
         static var name = "bird"
-        static var uti = UTType("com.ryanlintott.draganddrop.bird") ?? .data
+        static var uti = UTType.bird
         
         static var writableTypes: [UTType] {
             [uti]
