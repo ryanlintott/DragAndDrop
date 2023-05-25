@@ -11,13 +11,17 @@ import SwiftUI
 struct BirdListTransferable: View {
     @AccessibilityFocusState private var focus: Bird?
     @Binding var birds: [Bird]
+    @State private var isEmptyListTargeted = false
     
     var body: some View {
         if birds.isEmpty {
             Color.gray
+                .opacity(isEmptyListTargeted ? 0.5 : 1)
                 .dropDestination(for: Bird.self) { droppedBirds, location in
                     birds.append(contentsOf: droppedBirds)
                     return true
+                } isTargeted: {
+                    isEmptyListTargeted = $0
                 }
         } else {
             List {

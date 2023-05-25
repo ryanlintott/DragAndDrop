@@ -9,11 +9,13 @@ import SwiftUI
 
 struct BirdListProvidable: View {
     @Binding var birds: [Bird]
+    @State private var isEmptyListTargeted = false
     
     var body: some View {
         if birds.isEmpty {
             Color.gray
-                .onDrop(of: Bird.Wrapper.readableTypes, isTargeted: nil) { providers, location in
+                .opacity(isEmptyListTargeted ? 0.5 : 1)
+                .onDrop(of: Bird.Wrapper.readableTypes, isTargeted: $isEmptyListTargeted) { providers, location in
                     providers.reversed().loadItems(Bird.self) { bird, error in
                         if let bird {
                             birds.append(bird)
