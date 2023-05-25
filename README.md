@@ -1,11 +1,11 @@
 # DragAndDrop
-Simple drag and drop implementation with custom objects in iOS 14.
+Drag and drop implementation with move and insert in iOS 14 and iOS 16.
 
 ## Demo
 
 <img width="250" alt="" src="https://user-images.githubusercontent.com/2143656/195680033-2a22ccb1-bc9c-4a87-aa05-05082ead4f4e.gif">
 
-## Making your custom type draggable
+## Making your custom type draggable in iOS 14
 
 - Start with a `Codable` object that you want to drag and drop.
 
