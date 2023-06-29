@@ -10,6 +10,7 @@
 		CF3F07F828F86847005D5E70 /* BirdListProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F07F728F86847005D5E70 /* BirdListProvidable.swift */; };
 		CF3F080228F89E2E005D5E70 /* Bird+Providable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F080128F89E2E005D5E70 /* Bird+Providable.swift */; };
 		CF633BD528F6876C00731287 /* Providable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF633BD428F6876C00731287 /* Providable.swift */; };
+		CFA6D4D02A4CAA100034AB1A /* AccessibilityMoveActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA6D4CF2A4CAA100034AB1A /* AccessibilityMoveActions.swift */; };
 		CFBFB5062A1F951900DC81B0 /* Bird+Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFB5052A1F951900DC81B0 /* Bird+Transferable.swift */; };
 		CFBFB5082A1FD40D00DC81B0 /* UTType+Bird.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFB5072A1FD40D00DC81B0 /* UTType+Bird.swift */; };
 		CFBFB50A2A1FDDCD00DC81B0 /* BirdListTransferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFB5092A1FDDCD00DC81B0 /* BirdListTransferable.swift */; };
@@ -24,6 +25,7 @@
 		CF3F07F728F86847005D5E70 /* BirdListProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdListProvidable.swift; sourceTree = "<group>"; };
 		CF3F080128F89E2E005D5E70 /* Bird+Providable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bird+Providable.swift"; sourceTree = "<group>"; };
 		CF633BD428F6876C00731287 /* Providable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providable.swift; sourceTree = "<group>"; };
+		CFA6D4CF2A4CAA100034AB1A /* AccessibilityMoveActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityMoveActions.swift; sourceTree = "<group>"; };
 		CFBFB5052A1F951900DC81B0 /* Bird+Transferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bird+Transferable.swift"; sourceTree = "<group>"; };
 		CFBFB5072A1FD40D00DC81B0 /* UTType+Bird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Bird.swift"; sourceTree = "<group>"; };
 		CFBFB5092A1FDDCD00DC81B0 /* BirdListTransferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdListTransferable.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF8F5DB32A4D100600B0F751 /* AccessibilityMove */ = {
+			isa = PBXGroup;
+			children = (
+				CFA6D4CF2A4CAA100034AB1A /* AccessibilityMoveActions.swift */,
+			);
+			path = AccessibilityMove;
+			sourceTree = "<group>";
+		};
 		CFBFB50C2A1FE01E00DC81B0 /* Providable */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 				CFF37A1E28F5ED1A00E967FB /* ContentView.swift */,
 				CFF37A2A28F5ED5100E967FB /* Bird.swift */,
 				CFBFB5072A1FD40D00DC81B0 /* UTType+Bird.swift */,
+				CF8F5DB32A4D100600B0F751 /* AccessibilityMove */,
 				CFBFB50D2A1FE02600DC81B0 /* Transferable */,
 				CFBFB50C2A1FE01E00DC81B0 /* Providable */,
 				CFF37A2028F5ED1A00E967FB /* Assets.xcassets */,
@@ -179,6 +190,7 @@
 				CFF37A1F28F5ED1A00E967FB /* ContentView.swift in Sources */,
 				CF633BD528F6876C00731287 /* Providable.swift in Sources */,
 				CFF37A2B28F5ED5100E967FB /* Bird.swift in Sources */,
+				CFA6D4D02A4CAA100034AB1A /* AccessibilityMoveActions.swift in Sources */,
 				CFBFB50A2A1FDDCD00DC81B0 /* BirdListTransferable.swift in Sources */,
 				CFBFB5082A1FD40D00DC81B0 /* UTType+Bird.swift in Sources */,
 				CFBFB5062A1F951900DC81B0 /* Bird+Transferable.swift in Sources */,

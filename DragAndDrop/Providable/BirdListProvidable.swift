@@ -32,6 +32,7 @@ struct BirdListProvidable: View {
                             .font(.caption2)
                             .lineLimit(1)
                     }
+                    .accessibilityMoveIfAvailable(bird)
                     .onDrag {
                         bird.provider
                     }
@@ -50,6 +51,7 @@ struct BirdListProvidable: View {
                     birds.remove(atOffsets: $0)
                 }
             }
+            .accessibilityMoveableIfAvailable($birds, label: \.name)
         }
     }
 }
