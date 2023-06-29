@@ -106,13 +106,21 @@ public extension View {
 
 @available(iOS 15, macOS 12, *)
 struct AccessibilityMoveableListViewModifier<Item: Hashable>: ViewModifier {
-    @AccessibilityFocusState var focus: Item?
+    /// Stores the state of the focused list item
+    @State var focus: Item? = nil
     
     @Binding var items: [Item]
+    
+    /// Keypath for the label of each item, used when describing items above and below the moved item.
     let label: KeyPath<Item, String>?
     
     func body(content: Content) -> some View {
         content
+            .overlay {
+                Button("Focus") {
+                    focus = items.first!
+                }
+            }
             .environment(\.accessibilityFocusedItem, focus)
             .environment(\.accessibilityMove) { item, action in
                 guard
@@ -174,6 +182,7 @@ struct AccessibilityMoveableListViewModifier<Item: Hashable>: ViewModifier {
 
                 if destinationIndex != itemIndex {
                     items.move(fromOffsets: [itemIndex], toOffset: destinationIndex)
+                    /// Even though accessibility focus appears to stay on the moved item, resetting it ensures the index and associated accessibility actions are also updated.
                     focus = thisItem
                 }
 
