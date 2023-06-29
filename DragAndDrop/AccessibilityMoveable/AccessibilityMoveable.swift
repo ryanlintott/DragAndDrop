@@ -59,7 +59,7 @@ public extension EnvironmentValues {
 }
 
 @available(iOS 15, macOS 12, *)
-struct AccessibilityMoveViewModifier<Item: Hashable & Equatable>: ViewModifier {
+struct AccessibilityMoveableViewModifier<Item: Hashable & Equatable>: ViewModifier {
     @Environment(\.accessibilityFocusedItem) var accessibilityFocusedItem
     @Environment(\.accessibilityMove) var accessibilityMove
     @AccessibilityFocusState var isFocused: Bool
@@ -89,15 +89,15 @@ struct AccessibilityMoveViewModifier<Item: Hashable & Equatable>: ViewModifier {
 
 @available(iOS 15, macOS 12, *)
 public extension View {
-    func accessibilityMove<Item: Hashable>(_ item: Item, actions: [AccessibilityMoveAction] = [.up, .down, .toTop, .toBottom]) -> some View {
-        modifier(AccessibilityMoveViewModifier(item: item, actions: actions))
+    func accessibilityMoveable<Item: Hashable>(_ item: Item, actions: [AccessibilityMoveAction] = [.up, .down, .toTop, .toBottom]) -> some View {
+        modifier(AccessibilityMoveableViewModifier(item: item, actions: actions))
     }
 }
 
 public extension View {
-    func accessibilityMoveIfAvailable<Item: Hashable>(_ item: Item, actions: [AccessibilityMoveAction] = [.up, .down, .toTop, .toBottom]) -> some View {
+    func accessibilityMoveableIfAvailable<Item: Hashable>(_ item: Item, actions: [AccessibilityMoveAction] = [.up, .down, .toTop, .toBottom]) -> some View {
         if #available(iOS 15, macOS 12, *) {
-            return modifier(AccessibilityMoveViewModifier(item: item, actions: actions))
+            return modifier(AccessibilityMoveableViewModifier(item: item, actions: actions))
         } else {
             return self
         }
@@ -105,7 +105,7 @@ public extension View {
 }
 
 @available(iOS 15, macOS 12, *)
-struct AccessibilityMoveableViewModifier<Item: Hashable>: ViewModifier {
+struct AccessibilityMoveableListViewModifier<Item: Hashable>: ViewModifier {
     @AccessibilityFocusState var focus: Item?
     
     @Binding var items: [Item]
@@ -184,15 +184,15 @@ struct AccessibilityMoveableViewModifier<Item: Hashable>: ViewModifier {
 
 @available(iOS 15, macOS 12, *)
 public extension View {
-    func accessibilityMoveable<Item: Hashable>(_ items: Binding<Array<Item>>, label: KeyPath<Item, String>? = nil) -> some View {
-        modifier(AccessibilityMoveableViewModifier(items: items, label: label))
+    func accessibilityMoveableList<Item: Hashable>(_ items: Binding<Array<Item>>, label: KeyPath<Item, String>? = nil) -> some View {
+        modifier(AccessibilityMoveableListViewModifier(items: items, label: label))
     }
 }
 
 public extension View {
-    func accessibilityMoveableIfAvailable<Item: Hashable>(_ items: Binding<Array<Item>>, label: KeyPath<Item, String>? = nil) -> some View {
+    func accessibilityMoveableListIfAvailable<Item: Hashable>(_ items: Binding<Array<Item>>, label: KeyPath<Item, String>? = nil) -> some View {
         if #available(iOS 15, macOS 12, *) {
-            return modifier(AccessibilityMoveableViewModifier(items: items, label: label))
+            return modifier(AccessibilityMoveableListViewModifier(items: items, label: label))
         } else {
             return self
         }

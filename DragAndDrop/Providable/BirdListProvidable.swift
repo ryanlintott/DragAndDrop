@@ -34,7 +34,7 @@ struct BirdListProvidable: View {
                             .accessibilityHidden(true)
                     }
                     .accessibilityHint("id: \(bird.id.uuidString)")
-                    .accessibilityMoveIfAvailable(bird, actions: [.up, .down, .up(3), .down(3), .toTop, .toBottom])
+                    .accessibilityMoveableIfAvailable(bird, actions: [.up, .down, .up(3), .down(3), .toTop, .toBottom])
                     .onDrag {
                         bird.provider
                     }
@@ -53,7 +53,7 @@ struct BirdListProvidable: View {
                     birds.remove(atOffsets: $0)
                 }
             }
-            .accessibilityMoveableIfAvailable($birds, label: \.name)
+            .accessibilityMoveableListIfAvailable($birds, label: \.name)
         }
     }
 }

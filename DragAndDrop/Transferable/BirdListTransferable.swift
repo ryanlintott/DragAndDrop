@@ -33,7 +33,7 @@ struct BirdListTransferable: View {
                             .accessibilityHidden(true)
                     }
                     .accessibilityHint("id: \(bird.id.uuidString)")
-                    .accessibilityMove(bird, actions: [.up, .down, .up(3), .down(3), .toTop, .toBottom])
+                    .accessibilityMoveable(bird, actions: [.up, .down, .up(3), .down(3), .toTop, .toBottom])
                     .draggable(bird)
                 }
                 .onMove {
@@ -47,7 +47,7 @@ struct BirdListTransferable: View {
                 }
                 
             }
-            .accessibilityMoveable($birds, label: \.name)
+            .accessibilityMoveableList($birds, label: \.name)
         }
     }
 }
