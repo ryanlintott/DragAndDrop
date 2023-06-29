@@ -31,8 +31,10 @@ struct BirdListProvidable: View {
                         Text("id: \(bird.id.uuidString)")
                             .font(.caption2)
                             .lineLimit(1)
+                            .accessibilityHidden(true)
                     }
-                    .accessibilityMoveIfAvailable(bird)
+                    .accessibilityHint("id: \(bird.id.uuidString)")
+                    .accessibilityMoveIfAvailable(bird, actions: [.up, .down, .up(3), .down(3), .toTop, .toBottom])
                     .onDrag {
                         bird.provider
                     }

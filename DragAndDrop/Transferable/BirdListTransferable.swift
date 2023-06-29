@@ -9,7 +9,6 @@ import SwiftUI
 
 @available(iOS 16, macOS 13, *)
 struct BirdListTransferable: View {
-    @AccessibilityFocusState private var focus: Bird?
     @Binding var birds: [Bird]
     @State private var isEmptyListTargeted = false
     
@@ -31,40 +30,10 @@ struct BirdListTransferable: View {
                         Text("id: \(bird.id.uuidString)")
                             .font(.caption2)
                             .lineLimit(1)
+                            .accessibilityHidden(true)
                     }
-                    .accessibilityMove(bird)
-//                    .accessibilityFocused($focus, equals: bird)
-//                    .accessibilityActions {
-//                        Button {
-//                            if let firstIndex = birds.firstIndex(of: bird),
-//                               birds.count > 1,
-//                               firstIndex > birds.startIndex {
-//                                /// Save a copy of the user here
-//                                let thisBird = bird
-//                                birds.swapAt(firstIndex, birds.index(before: firstIndex))
-//                                /// Set the focus to the copy (setting the focus to user does not work)
-//                                focus = thisBird
-//                                UIAccessibility.post(notification: .announcement, argument: "Moved above \(birds[firstIndex].name)")
-//                            }
-//                        } label: {
-//                            Text("Move Up")
-//                        }
-//
-//                        Button {
-//                            if let firstIndex = birds.firstIndex(of: bird),
-//                               birds.count > 1,
-//                               firstIndex < birds.endIndex - 1 {
-//                                /// Save a copy of the user here
-//                                let thisBird = bird
-//                                birds.swapAt(firstIndex, birds.index(after: firstIndex))
-//                                /// Set the focus to the copy (setting the focus to user does not work)
-//                                focus = thisBird
-//                                UIAccessibility.post(notification: .announcement, argument: "Moved below \(birds[firstIndex].name)")
-//                            }
-//                        } label: {
-//                            Text("Move Down")
-//                        }
-//                    }
+                    .accessibilityHint("id: \(bird.id.uuidString)")
+                    .accessibilityMove(bird, actions: [.up, .down, .up(3), .down(3), .toTop, .toBottom])
                     .draggable(bird)
                 }
                 .onMove {

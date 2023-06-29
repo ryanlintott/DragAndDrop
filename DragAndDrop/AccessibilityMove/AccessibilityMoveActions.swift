@@ -8,19 +8,32 @@
 import SwiftUI
 
 public enum AccessibilityMoveAction: Identifiable, Hashable, Equatable {
-    case up
-    case down
-    
+    case up(Int = 1)
+    case down(Int = 1)
+    case toTop
+    case toBottom
+
     public var id: Self { self }
 }
 
 public extension AccessibilityMoveAction {
+    static let up: Self = .up()
+    static let down: Self = .down()
+
     var name: String {
         switch self {
-        case .up:
+        case .up(by: 1):
             return "Move up"
-        case .down:
+        case .down(by: 1):
             return "Move down"
+        case .up(let int):
+            return "Move up by \(int)"
+        case .down(let int):
+            return "Move down by \(int)"
+        case .toTop:
+            return "Move to top"
+        case .toBottom:
+            return "Move to bottom"
         }
     }
 }
@@ -48,6 +61,7 @@ public extension EnvironmentValues {
 @available(iOS 15, macOS 12, *)
 struct AccessibilityMoveViewModifier<Item: Hashable & Equatable>: ViewModifier {
     @Environment(\.accessibilityFocusedItem) var accessibilityFocusedItem
+    @Environment(\.accessibilityMove) var accessibilityMove
     @AccessibilityFocusState var isFocused: Bool
     
     let item: Item
@@ -56,51 +70,32 @@ struct AccessibilityMoveViewModifier<Item: Hashable & Equatable>: ViewModifier {
     func body(content: Content) -> some View {
         content
             .accessibilityFocused($isFocused)
-            .accessibilityMoveActionsRecursive(item: item, actions: actions)
+            .background {
+                ZStack {
+                    ForEach(actions) { action in
+                        Color.clear
+                            .accessibilityAction(named: action.name) {
+                                accessibilityMove?(item, action)
+                            }
+                    }
+                }
+            }
+            .accessibilityElement(children: .combine)
             .onChange(of: accessibilityFocusedItem as? Item) { newValue in
                 isFocused = newValue == item
             }
     }
 }
 
-struct AccessibilityMoveActionViewModifier<Item: Hashable & Equatable>: ViewModifier {
-    @Environment(\.accessibilityMove) var accessibilityMove
-    
-    let item: Item
-    let action: AccessibilityMoveAction
-    
-    func body(content: Content) -> some View {
-        content
-            .accessibilityAction(named: action.name) {
-                accessibilityMove?(item, action)
-            }
-    }
-}
-
 @available(iOS 15, macOS 12, *)
 public extension View {
-    func accessibilityMove<Item: Hashable>(_ item: Item, actions: [AccessibilityMoveAction] = [.up, .down]) -> some View {
+    func accessibilityMove<Item: Hashable>(_ item: Item, actions: [AccessibilityMoveAction] = [.up, .down, .toTop, .toBottom]) -> some View {
         modifier(AccessibilityMoveViewModifier(item: item, actions: actions))
-    }
-    
-    @ViewBuilder
-    fileprivate func accessibilityMoveActionsRecursive<T: Hashable>(item: T, actions: some Collection<AccessibilityMoveAction>) -> some View {
-        switch actions.count {
-        case ...0:
-            self
-        case 1:
-            self
-                .modifier(AccessibilityMoveActionViewModifier(item: item, action: actions.first!))
-        default:
-            self
-                .modifier(AccessibilityMoveActionViewModifier(item: item, action: actions.first!))
-                .accessibilityMoveActionsRecursive(item: item, actions: actions.dropFirst(1))
-        }
     }
 }
 
 public extension View {
-    func accessibilityMoveIfAvailable<Item: Hashable>(_ item: Item, actions: [AccessibilityMoveAction] = [.up, .down]) -> some View {
+    func accessibilityMoveIfAvailable<Item: Hashable>(_ item: Item, actions: [AccessibilityMoveAction] = [.up, .down, .toTop, .toBottom]) -> some View {
         if #available(iOS 15, macOS 12, *) {
             return modifier(AccessibilityMoveViewModifier(item: item, actions: actions))
         } else {
@@ -119,49 +114,70 @@ struct AccessibilityMoveableViewModifier<Item: Hashable>: ViewModifier {
     func body(content: Content) -> some View {
         content
             .environment(\.accessibilityFocusedItem, focus)
-            .environment(\.accessibilityMove) { item, destination in
+            .environment(\.accessibilityMove) { item, action in
                 guard
                     let item = item as? Item,
-                    let firstIndex = items.firstIndex(of: item),
+                    let itemIndex = items.firstIndex(of: item),
                     items.count > 1
                 else { return }
+
+                var destinationIndex: Int
+
+                switch action {
+                case let .up(distance):
+                    destinationIndex = items.index(itemIndex, offsetBy: -distance)
+                case let .down(distance):
+                    destinationIndex = items.index(itemIndex, offsetBy: distance + 1)
+                case .toTop:
+                    destinationIndex = items.startIndex
+                case .toBottom:
+                    destinationIndex = items.endIndex
+                }
+                /// Clamp destination by start and end index
+                destinationIndex = min(max(items.startIndex, destinationIndex), items.endIndex)
+
+                let thisItem = item
+                var announcement = [String]()
+
+                switch (destinationIndex, action) {
+                case (itemIndex, .up), (itemIndex, .toTop), (itemIndex + 1, .down), (itemIndex + 1, .toBottom):
+                    announcement.append("Not moved.")
+                case (itemIndex - 1, .up):
+                    announcement.append("Moved up.")
+                case (itemIndex + 2, .down):
+                    announcement.append("Moved down.")
+                case (_, .up), (_, .toTop):
+                    announcement.append("Moved up by \(itemIndex - destinationIndex).")
+                case (_, .down), (_, .toBottom):
+                    announcement.append("Moved down by \(destinationIndex - itemIndex).")
+                }
                 
-                switch destination {
-                case .up:
-                    if firstIndex > items.startIndex {
-                        /// Save a copy of the user here
-                        let thisItem = item
-                        items.swapAt(firstIndex, items.index(before: firstIndex))
-                        /// Set the focus to the copy (setting the focus to user does not work)
-                        focus = thisItem
-                        
-                        let announcement: String
-                        if let label {
-                            announcement = "Moved above \(items[firstIndex][keyPath: label])"
-                        } else {
-                            announcement = "Moved up"
-                        }
-                        
-                        UIAccessibility.post(notification: .announcement, argument: announcement)
-                    }
-                case .down:
-                    if firstIndex < items.endIndex - 1 {
-                        /// Save a copy of the user here
-                        let thisItem = item
-                        items.swapAt(firstIndex, items.index(after: firstIndex))
-                        /// Set the focus to the copy (setting the focus to user does not work)
-                        focus = thisItem
-                        
-                        let announcement: String
-                        if let label {
-                            announcement = "Moved below \(items[firstIndex][keyPath: label])"
-                        } else {
-                            announcement = "Moved down"
-                        }
-                        
-                        UIAccessibility.post(notification: .announcement, argument: announcement)
+                if let label {
+                    switch (destinationIndex, action) {
+                    case (itemIndex, .up), (itemIndex, .toTop), (itemIndex + 1, .down), (itemIndex + 1, .toBottom):
+                        break
+                    case (_, .up), (_, .toTop):
+                        announcement.append("Above \(items[destinationIndex][keyPath: label]).")
+                    case (_, .down), (_, .toBottom):
+                        announcement.append("Below \(items[destinationIndex - 1][keyPath: label]).")
                     }
                 }
+
+                switch destinationIndex {
+                case items.startIndex:
+                    announcement.append("Item at top.")
+                case items.endIndex:
+                    announcement.append("Item at bottom.")
+                default:
+                    break
+                }
+
+                if destinationIndex != itemIndex {
+                    items.move(fromOffsets: [itemIndex], toOffset: destinationIndex)
+                    focus = thisItem
+                }
+
+                UIAccessibility.post(notification: .announcement, argument: announcement.joined(separator: " "))
             }
     }
 }
@@ -182,5 +198,3 @@ public extension View {
         }
     }
 }
-
-
