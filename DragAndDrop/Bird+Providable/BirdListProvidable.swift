@@ -15,7 +15,7 @@ struct BirdListProvidable: View {
         if birds.isEmpty {
             Color.gray
                 .opacity(isEmptyListTargeted ? 0.5 : 1)
-                .onDrop(of: Bird.Wrapper.readableTypes, isTargeted: $isEmptyListTargeted) { providers, location in
+                .onDrop(of: Bird.readableTypes, isTargeted: $isEmptyListTargeted) { providers, location in
                     providers.reversed().loadItems(Bird.self) { bird, error in
                         if let bird {
                             birds.append(bird)
@@ -39,10 +39,13 @@ struct BirdListProvidable: View {
                         bird.provider
                     }
                 }
-                .onInsert(of: Bird.Wrapper.readableTypes) { index, providers in
+                .onInsert(of: Bird.readableTypes) { index, providers in
                     providers.reversed().loadItems(Bird.self) { bird, error in
                         if let bird {
-                            birds.insert(bird, at: index)
+                            /// only add birds with new unique ids
+                            if !birds.contains(where: { $0.id == bird.id }) {
+                                birds.insert(bird, at: index)
+                            }
                         }
                     }
                 }

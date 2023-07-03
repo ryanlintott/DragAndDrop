@@ -1,5 +1,5 @@
 //
-//  AccessibilityMoveActions.swift
+//  AccessibilityMoveable.swift
 //  DragAndDrop
 //
 //  Created by Ryan Lintott on 2023-06-28.
@@ -116,11 +116,6 @@ struct AccessibilityMoveableListViewModifier<Item: Hashable>: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .overlay {
-                Button("Focus") {
-                    focus = items.first!
-                }
-            }
             .environment(\.accessibilityFocusedItem, focus)
             .environment(\.accessibilityMove) { item, action in
                 guard

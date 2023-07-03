@@ -43,7 +43,11 @@ struct BirdListTransferable: View {
                     birds.remove(atOffsets: $0)
                 }
                 .dropDestination(for: Bird.self) { droppedBirds, offset in
-                    birds.insert(contentsOf: droppedBirds, at: offset)
+                    /// only add birds with new unique ids
+                    let newBirds = droppedBirds.filter { bird in
+                        !birds.contains { $0.id == bird.id }
+                    }
+                    birds.insert(contentsOf: newBirds, at: offset)
                 }
                 
             }
