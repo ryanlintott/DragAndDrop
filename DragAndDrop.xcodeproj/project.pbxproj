@@ -8,25 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		CF3F07F828F86847005D5E70 /* BirdListProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F07F728F86847005D5E70 /* BirdListProvidable.swift */; };
-		CFA6D4D02A4CAA100034AB1A /* AccessibilityMoveable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA6D4CF2A4CAA100034AB1A /* AccessibilityMoveable.swift */; };
 		CFBFB5062A1F951900DC81B0 /* Bird+Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFB5052A1F951900DC81B0 /* Bird+Transferable.swift */; };
 		CFBFB5082A1FD40D00DC81B0 /* UTType+Bird.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFB5072A1FD40D00DC81B0 /* UTType+Bird.swift */; };
 		CFBFB50A2A1FDDCD00DC81B0 /* BirdListTransferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFB5092A1FDDCD00DC81B0 /* BirdListTransferable.swift */; };
+		CFD08A812A57AF610018ED7E /* ILikeToMoveIt in Frameworks */ = {isa = PBXBuildFile; productRef = CFD08A802A57AF610018ED7E /* ILikeToMoveIt */; };
 		CFF37A1D28F5ED1A00E967FB /* DragAndDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF37A1C28F5ED1A00E967FB /* DragAndDropApp.swift */; };
 		CFF37A1F28F5ED1A00E967FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF37A1E28F5ED1A00E967FB /* ContentView.swift */; };
 		CFF37A2128F5ED1A00E967FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFF37A2028F5ED1A00E967FB /* Assets.xcassets */; };
 		CFF37A2428F5ED1A00E967FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFF37A2328F5ED1A00E967FB /* Preview Assets.xcassets */; };
 		CFF37A2B28F5ED5100E967FB /* Bird.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF37A2A28F5ED5100E967FB /* Bird.swift */; };
-		CFFEB31F2A53636900C8C974 /* Providable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEB31E2A53636900C8C974 /* Providable.swift */; };
 		CFFEB3212A537B1100C8C974 /* Bird+Providable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEB3202A537B1100C8C974 /* Bird+Providable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CF3F07F728F86847005D5E70 /* BirdListProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdListProvidable.swift; sourceTree = "<group>"; };
-		CFA6D4CF2A4CAA100034AB1A /* AccessibilityMoveable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityMoveable.swift; sourceTree = "<group>"; };
 		CFBFB5052A1F951900DC81B0 /* Bird+Transferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bird+Transferable.swift"; sourceTree = "<group>"; };
 		CFBFB5072A1FD40D00DC81B0 /* UTType+Bird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Bird.swift"; sourceTree = "<group>"; };
 		CFBFB5092A1FDDCD00DC81B0 /* BirdListTransferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdListTransferable.swift; sourceTree = "<group>"; };
+		CFD08A822A57B0180018ED7E /* ILikeToMoveIt */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ILikeToMoveIt; path = ../ILikeToMoveIt; sourceTree = "<group>"; };
 		CFF37A1928F5ED1A00E967FB /* DragAndDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragAndDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF37A1C28F5ED1A00E967FB /* DragAndDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropApp.swift; sourceTree = "<group>"; };
 		CFF37A1E28F5ED1A00E967FB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -34,7 +33,6 @@
 		CFF37A2328F5ED1A00E967FB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CFF37A2A28F5ED5100E967FB /* Bird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bird.swift; sourceTree = "<group>"; };
 		CFF37A2E28F6011A00E967FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		CFFEB31E2A53636900C8C974 /* Providable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providable.swift; sourceTree = "<group>"; };
 		CFFEB3202A537B1100C8C974 /* Bird+Providable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bird+Providable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -43,28 +41,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFD08A812A57AF610018ED7E /* ILikeToMoveIt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CF8F5DB32A4D100600B0F751 /* AccessibilityMoveable */ = {
-			isa = PBXGroup;
-			children = (
-				CFA6D4CF2A4CAA100034AB1A /* AccessibilityMoveable.swift */,
-			);
-			path = AccessibilityMoveable;
-			sourceTree = "<group>";
-		};
-		CFBFB50C2A1FE01E00DC81B0 /* Providable */ = {
-			isa = PBXGroup;
-			children = (
-				CFFEB31E2A53636900C8C974 /* Providable.swift */,
-			);
-			path = Providable;
-			sourceTree = "<group>";
-		};
 		CFBFB50D2A1FE02600DC81B0 /* Bird+Transferable */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +69,7 @@
 		CFF37A1028F5ED1A00E967FB = {
 			isa = PBXGroup;
 			children = (
+				CFD08A822A57B0180018ED7E /* ILikeToMoveIt */,
 				CFF37A1B28F5ED1A00E967FB /* DragAndDrop */,
 				CFF37A1A28F5ED1A00E967FB /* Products */,
 			);
@@ -107,8 +91,6 @@
 				CFF37A1E28F5ED1A00E967FB /* ContentView.swift */,
 				CFF37A2A28F5ED5100E967FB /* Bird.swift */,
 				CFBFB5072A1FD40D00DC81B0 /* UTType+Bird.swift */,
-				CF8F5DB32A4D100600B0F751 /* AccessibilityMoveable */,
-				CFBFB50C2A1FE01E00DC81B0 /* Providable */,
 				CFBFB50D2A1FE02600DC81B0 /* Bird+Transferable */,
 				CFD08A7E2A5388950018ED7E /* Bird+Providable */,
 				CFF37A2028F5ED1A00E967FB /* Assets.xcassets */,
@@ -141,6 +123,9 @@
 			dependencies = (
 			);
 			name = DragAndDrop;
+			packageProductDependencies = (
+				CFD08A802A57AF610018ED7E /* ILikeToMoveIt */,
+			);
 			productName = DragAndDrop;
 			productReference = CFF37A1928F5ED1A00E967FB /* DragAndDrop.app */;
 			productType = "com.apple.product-type.application";
@@ -169,6 +154,9 @@
 				Base,
 			);
 			mainGroup = CFF37A1028F5ED1A00E967FB;
+			packageReferences = (
+				CFD08A7F2A57AF610018ED7E /* XCRemoteSwiftPackageReference "ILikeToMoveIt" */,
+			);
 			productRefGroup = CFF37A1A28F5ED1A00E967FB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -198,9 +186,7 @@
 				CFF37A1F28F5ED1A00E967FB /* ContentView.swift in Sources */,
 				CFF37A2B28F5ED5100E967FB /* Bird.swift in Sources */,
 				CFFEB3212A537B1100C8C974 /* Bird+Providable.swift in Sources */,
-				CFA6D4D02A4CAA100034AB1A /* AccessibilityMoveable.swift in Sources */,
 				CFBFB50A2A1FDDCD00DC81B0 /* BirdListTransferable.swift in Sources */,
-				CFFEB31F2A53636900C8C974 /* Providable.swift in Sources */,
 				CFBFB5082A1FD40D00DC81B0 /* UTType+Bird.swift in Sources */,
 				CFBFB5062A1F951900DC81B0 /* Bird+Transferable.swift in Sources */,
 				CFF37A1D28F5ED1A00E967FB /* DragAndDropApp.swift in Sources */,
@@ -409,6 +395,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CFD08A7F2A57AF610018ED7E /* XCRemoteSwiftPackageReference "ILikeToMoveIt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ryanlintott/ILikeToMoveIt.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CFD08A802A57AF610018ED7E /* ILikeToMoveIt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFD08A7F2A57AF610018ED7E /* XCRemoteSwiftPackageReference "ILikeToMoveIt" */;
+			productName = ILikeToMoveIt;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CFF37A1128F5ED1A00E967FB /* Project object */;
 }
