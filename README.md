@@ -9,9 +9,9 @@ Adding `.onMove` allows some users to drag items up and down in a list but it do
 
 If you want to add accessibility actions to move items up and down your list you can add the package [ILikeToMoveIt](https://github.com/ryanlintott/ILikeToMoveIt) and follow the instructtions to add `.accessibilityMoveable()` view modifiers.
 
-## Drag and drop for custom types
 
-<img width="250" alt="" src="https://user-images.githubusercontent.com/2143656/195680033-2a22ccb1-bc9c-4a87-aa05-05082ead4f4e.gif">
+## Demo [Video](https://mastodon.social/@ryanlintott/110690143602729594)
+<img width="250" alt="ILikeToMoveIt demo app with the logo at the top and two lists at the bottom. The left list contains a number of birds. Chicken is dragged up a few spaces. Cardinal is dragged to the empty list on the right. Robin, Goose, and Swan are picked up from the left list and dropped on the right list. Text reading StringBird above the list is dragged onto the right list. Switching over to the reminders app, two reminders named Crow and Finch are picked up and dragged back into the right list of ILikeToMoveIt. VoiceOver is turned on and Robin is moved up and down using accessibility actions. Each time the move and the final position above Chicken or below Blue Jay is reported along with At Top or At Bottom if applicable." src="https://github.com/ryanlintott/DragAndDrop/assets/2143656/3bbd15c4-4a04-4617-b2df-ecb41254ffdf">
 
 ## Making a new draggable type
 - Start with a `Codable` object that you want to drag and drop.
