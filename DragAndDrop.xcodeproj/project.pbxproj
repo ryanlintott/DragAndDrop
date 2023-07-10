@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF3F07F828F86847005D5E70 /* BirdListProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F07F728F86847005D5E70 /* BirdListProvidable.swift */; };
+		CF6CCE522A5C3DC600B0C707 /* MoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6CCE512A5C3DC600B0C707 /* MoreInfo.swift */; };
 		CFBFB5062A1F951900DC81B0 /* Bird+Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFB5052A1F951900DC81B0 /* Bird+Transferable.swift */; };
 		CFBFB5082A1FD40D00DC81B0 /* UTType+Bird.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFB5072A1FD40D00DC81B0 /* UTType+Bird.swift */; };
 		CFBFB50A2A1FDDCD00DC81B0 /* BirdListTransferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFB5092A1FDDCD00DC81B0 /* BirdListTransferable.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		CF3F07F728F86847005D5E70 /* BirdListProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdListProvidable.swift; sourceTree = "<group>"; };
+		CF6CCE512A5C3DC600B0C707 /* MoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfo.swift; sourceTree = "<group>"; };
 		CFBFB5052A1F951900DC81B0 /* Bird+Transferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bird+Transferable.swift"; sourceTree = "<group>"; };
 		CFBFB5072A1FD40D00DC81B0 /* UTType+Bird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Bird.swift"; sourceTree = "<group>"; };
 		CFBFB5092A1FDDCD00DC81B0 /* BirdListTransferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdListTransferable.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				CFF37A2E28F6011A00E967FB /* Info.plist */,
 				CFF37A1C28F5ED1A00E967FB /* DragAndDropApp.swift */,
 				CFF37A1E28F5ED1A00E967FB /* ContentView.swift */,
+				CF6CCE512A5C3DC600B0C707 /* MoreInfo.swift */,
 				CFF37A2A28F5ED5100E967FB /* Bird.swift */,
 				CFBFB5072A1FD40D00DC81B0 /* UTType+Bird.swift */,
 				CFBFB50D2A1FE02600DC81B0 /* Bird+Transferable */,
@@ -191,6 +194,7 @@
 				CFBFB5062A1F951900DC81B0 /* Bird+Transferable.swift in Sources */,
 				CFF37A1D28F5ED1A00E967FB /* DragAndDropApp.swift in Sources */,
 				CF3F07F828F86847005D5E70 /* BirdListProvidable.swift in Sources */,
+				CF6CCE522A5C3DC600B0C707 /* MoreInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

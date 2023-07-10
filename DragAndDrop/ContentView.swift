@@ -8,8 +8,8 @@
 import SwiftUI
 
 enum DragProtocol: String, CaseIterable, Identifiable {
-    case providable
     case transferable
+    case providable
     
     var id: Self { self }
 }
@@ -17,51 +17,70 @@ enum DragProtocol: String, CaseIterable, Identifiable {
 struct ContentView: View {
     @State private var birds1: [Bird] = Bird.examples
     @State private var birds2: [Bird] = []
-    @State private var dragProtocol: DragProtocol = .providable
+    @State private var dragProtocol: DragProtocol = .transferable
+    @State private var isShowingMoreInfo = false
+    
+    var logo: some View {
+        Image("ILikeToMoveIt-logo")
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: 400)
+            .padding()
+    }
     
     var body: some View {
         NavigationView {
             VStack {
-                Picker("Protocol", selection: $dragProtocol) {
-                    ForEach(DragProtocol.allCases) { dragProtocol in
-                        Text(dragProtocol.rawValue)
+                logo
+                
+                VStack(alignment: .leading) {
+                    Text("This is a demo of SwiftUI drag and drop features along with iLikeToMoveIt extensions.")
+                    
+                    Button {
+                        isShowingMoreInfo = true
+                    } label: {
+                        Label("More Info", systemImage: "info.circle")
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(10)
+                    
+                    Picker("Protocol", selection: $dragProtocol) {
+                        ForEach(DragProtocol.allCases) { dragProtocol in
+                            Text(dragProtocol.rawValue)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    
+                    HStack {
+                        Text("Draggable String >")
+                        
+                        Text("StringBird")
+                            .padding()
+                            .onDrag { NSItemProvider(object: "StringBird" as NSString) }
                     }
                 }
-                .pickerStyle(.segmented)
-                
-                VStack {
-                    Text(
-"""
-- Drag birds to reorder.
-- Drag from one list to another.
-- While dragging tap to add additional birds.
-- Drag string from below.
-- Drag strings from any app.
-"""
-                    )
-                    
-                    Text("StringBird")
-                        .padding()
-                        .onDrag { NSItemProvider(object: "StringBird" as NSString) }
-                }
-                .padding()
+                .padding(.horizontal)
                 
                 HStack {
                     switch dragProtocol {
-                    case .providable:
-                        BirdListProvidable(birds: $birds1)
-                        BirdListProvidable(birds: $birds2)
                     case .transferable:
                         if #available(iOS 16, macOS 13, *) {
                             BirdListTransferable(birds: $birds1)
                             BirdListTransferable(birds: $birds2)
                         } else {
-                            Text("Not supported.")
+                            Text("Transferable Not supported. Use Providable.")
                         }
+                    case .providable:
+                        BirdListProvidable(birds: $birds1)
+                        BirdListProvidable(birds: $birds2)
                     }
                 }
             }
-            .navigationTitle("Drag and Drop")
+            .navigationTitle("iLikeToMoveIt")
+            .navigationBarHidden(true)
+            .sheet(isPresented: $isShowingMoreInfo) {
+                MoreInfo()
+            }
         }
     }
 }
