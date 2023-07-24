@@ -17,7 +17,7 @@ enum DragProtocol: String, CaseIterable, Identifiable {
 struct ContentView: View {
     @State private var birds1: [Bird] = Bird.examples
     @State private var birds2: [Bird] = []
-    @State private var dragProtocol: DragProtocol = .transferable
+    @State private var dragProtocol: DragProtocol = .providable
     @State private var isShowingMoreInfo = false
     
     var logo: some View {
@@ -72,6 +72,13 @@ struct ContentView: View {
                         }
                     case .providable:
                         BirdListProvidable(birds: $birds1)
+                            .ifAvailable {
+                                if #available(iOS 16, macOS 13, *) {
+                                    $0.modifier(BirdUserActivityProvidableView())
+                                } else {
+                                    $0
+                                }
+                            }
                         BirdListProvidable(birds: $birds2)
                     }
                 }
@@ -82,6 +89,7 @@ struct ContentView: View {
                 MoreInfo()
             }
         }
+        .navigationViewStyle(.stack)
     }
 }
 

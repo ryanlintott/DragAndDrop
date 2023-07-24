@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Bird: Identifiable, Codable, Equatable, Hashable {
+struct Bird: Identifiable, Codable, Hashable {
     let id: UUID
     let name: String
     

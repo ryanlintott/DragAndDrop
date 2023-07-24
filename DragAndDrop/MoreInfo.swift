@@ -13,20 +13,32 @@ struct MoreInfo: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack {
+                VStack(alignment: .leading) {
+                    Text("Providable or Transferable")
+                        .font(.title)
+                    
                     Text(
 """
-Things you can do in this example app:
-
 - Drag items to reorder.
 - Drag from one list to another.
 - While dragging tap to add additional items.
 - Drag string into list.
 - Drag strings from any app.
-- Test out both Transferable and Providable versions
-- Enable VoiceOver and test move actions to move items up, down, to the top and to the bottom of the list.
+- Enable VoiceOver and use move actions to move items up, down, to the top and to the bottom of the list. (iOS 15+ only. dragging between lists and apps not yet supported)
 """
                     )
+                    .padding(.horizontal)
+                    
+                    Text("Providable Only")
+                        .font(.title)
+                        .padding(.top)
+                    
+                    Text(
+"""
+- Drag items to make a new window on iPadOS (iOS 16+ only)
+"""
+                    )
+                    .padding(.horizontal)
                     
                     Spacer()
                 }

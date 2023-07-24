@@ -34,8 +34,15 @@ struct BirdListProvidable: View {
                             .lineLimit(1)
                             .accessibilityHidden(true)
                     }
+                    .frame(maxWidth: .infinity)
                     .accessibilityHint("id: \(bird.id.uuidString)")
-                    .accessibilityMoveableIfAvailable(bird, actions: [.up, .down, .up(3), .down(3), .toTop, .toBottom])
+                    .ifAvailable {
+                        if #available(iOS 16, macOS 13, *) {
+                            $0.accessibilityMoveable(bird, actions: [.up, .down, .up(3), .down(3), .toTop, .toBottom])
+                        } else {
+                            $0
+                        }
+                    }
                     .onDrag {
                         bird.provider
                     }
@@ -57,7 +64,13 @@ struct BirdListProvidable: View {
                     birds.remove(atOffsets: $0)
                 }
             }
-            .accessibilityMoveableListIfAvailable($birds, label: \.name)
+            .ifAvailable {
+                if #available(iOS 16, macOS 13, *) {
+                    $0.accessibilityMoveableList($birds, label: \.name)
+                } else {
+                    $0
+                }
+            }
         }
     }
 }

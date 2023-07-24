@@ -33,6 +33,7 @@ struct BirdListTransferable: View {
                             .lineLimit(1)
                             .accessibilityHidden(true)
                     }
+                    .frame(maxWidth: .infinity)
                     .accessibilityHint("id: \(bird.id.uuidString)")
                     .accessibilityMoveable(bird, actions: [.up, .down, .up(3), .down(3), .toTop, .toBottom])
                     .draggable(bird)

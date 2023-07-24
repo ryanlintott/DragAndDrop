@@ -1,5 +1,5 @@
 //
-//  Bird+Providable2.swift
+//  Bird+Providable.swift
 //  DragAndDrop
 //
 //  Created by Ryan Lintott on 2023-07-03.
@@ -37,5 +37,11 @@ extension Bird: Providable {
         default:
             return nil
         }
+    }
+}
+
+extension Bird: UserActivityProvidable {
+    static var activityType: String {
+        "com.ryanlintott.draganddrop.birdDetail"
     }
 }
