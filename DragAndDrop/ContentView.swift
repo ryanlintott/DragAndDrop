@@ -72,13 +72,6 @@ struct ContentView: View {
                         }
                     case .providable:
                         BirdListProvidable(birds: $birds1)
-                            .ifAvailable {
-                                if #available(iOS 16, macOS 13, *) {
-                                    $0.modifier(BirdUserActivityProvidableView())
-                                } else {
-                                    $0
-                                }
-                            }
                         BirdListProvidable(birds: $birds2)
                     }
                 }

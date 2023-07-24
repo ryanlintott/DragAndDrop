@@ -14,14 +14,9 @@ struct DragAndDropApp: App {
             ContentView()
         }
         
-        if #available(iOS 16, macOS 13, *) {
-            WindowGroup(for: Bird.self) { $bird in
-                if let bird {
-                    BirdDetailView(bird: bird)
-                } else {
-                    Text("No bird.")
-                }
-            }
+        WindowGroup {
+            BirdDetailView()            
         }
+        .handlesExternalEvents(matching: [Bird.activityType])
     }
 }

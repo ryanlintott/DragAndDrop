@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CF3F07F828F86847005D5E70 /* BirdListProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F07F728F86847005D5E70 /* BirdListProvidable.swift */; };
 		CF6CCE522A5C3DC600B0C707 /* MoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6CCE512A5C3DC600B0C707 /* MoreInfo.swift */; };
-		CFB905FD2A5E4AE900146FB3 /* BirdUserActivityProvidableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB905FC2A5E4AE900146FB3 /* BirdUserActivityProvidableView.swift */; };
 		CFB906012A5E537F00146FB3 /* BirdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB906002A5E537F00146FB3 /* BirdDetailView.swift */; };
 		CFB906032A61786800146FB3 /* View+IfAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB906022A61786800146FB3 /* View+IfAvailable.swift */; };
 		CFBFB5062A1F951900DC81B0 /* Bird+Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFB5052A1F951900DC81B0 /* Bird+Transferable.swift */; };
@@ -27,7 +26,6 @@
 /* Begin PBXFileReference section */
 		CF3F07F728F86847005D5E70 /* BirdListProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdListProvidable.swift; sourceTree = "<group>"; };
 		CF6CCE512A5C3DC600B0C707 /* MoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfo.swift; sourceTree = "<group>"; };
-		CFB905FC2A5E4AE900146FB3 /* BirdUserActivityProvidableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdUserActivityProvidableView.swift; sourceTree = "<group>"; };
 		CFB906002A5E537F00146FB3 /* BirdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdDetailView.swift; sourceTree = "<group>"; };
 		CFB906022A61786800146FB3 /* View+IfAvailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+IfAvailable.swift"; sourceTree = "<group>"; };
 		CFBFB5052A1F951900DC81B0 /* Bird+Transferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bird+Transferable.swift"; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				CF3F07F728F86847005D5E70 /* BirdListProvidable.swift */,
-				CFB905FC2A5E4AE900146FB3 /* BirdUserActivityProvidableView.swift */,
 				CFFEB3202A537B1100C8C974 /* Bird+Providable.swift */,
 			);
 			path = "Bird+Providable";
@@ -201,7 +198,6 @@
 				CFBFB50A2A1FDDCD00DC81B0 /* BirdListTransferable.swift in Sources */,
 				CFBFB5082A1FD40D00DC81B0 /* UTType+Bird.swift in Sources */,
 				CFB906012A5E537F00146FB3 /* BirdDetailView.swift in Sources */,
-				CFB905FD2A5E4AE900146FB3 /* BirdUserActivityProvidableView.swift in Sources */,
 				CFBFB5062A1F951900DC81B0 /* Bird+Transferable.swift in Sources */,
 				CFF37A1D28F5ED1A00E967FB /* DragAndDropApp.swift in Sources */,
 				CF3F07F828F86847005D5E70 /* BirdListProvidable.swift in Sources */,
