@@ -51,13 +51,7 @@ struct ContentView: View {
                     }
                     .pickerStyle(.segmented)
                     
-                    HStack {
-                        Text("Draggable String >")
-                        
-                        Text("StringBird")
-                            .padding()
-                            .onDrag { NSItemProvider(object: "StringBird" as NSString) }
-                    }
+                    DraggableStringView()
                 }
                 .padding(.horizontal)
                 
