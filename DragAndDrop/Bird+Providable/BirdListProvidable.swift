@@ -8,6 +8,7 @@
 import ILikeToMoveIt
 import SwiftUI
 
+@MainActor
 struct BirdListProvidable: View {
     @Binding var birds: [Bird]
     @State private var isEmptyListTargeted = false
@@ -19,7 +20,9 @@ struct BirdListProvidable: View {
                 .onDrop(of: Bird.readableTypes, isTargeted: $isEmptyListTargeted) { providers, location in
                     providers.reversed().loadItems(Bird.self) { bird, error in
                         if let bird {
-                            birds.append(bird)
+                            Task { @MainActor in
+                                birds.append(bird)
+                            }
                         }
                     }
                     return true
@@ -50,9 +53,11 @@ struct BirdListProvidable: View {
                 .onInsert(of: Bird.readableTypes) { index, providers in
                     providers.reversed().loadItems(Bird.self) { bird, error in
                         if let bird {
-                            /// only add birds with new unique ids
-                            if !birds.contains(where: { $0.id == bird.id }) {
-                                birds.insert(bird, at: index)
+                            Task { @MainActor in
+                                /// only add birds with new unique ids
+                                if !birds.contains(where: { $0.id == bird.id }) {
+                                    birds.insert(bird, at: index)
+                                }
                             }
                         }
                     }

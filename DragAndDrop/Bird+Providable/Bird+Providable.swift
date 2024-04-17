@@ -12,9 +12,9 @@ import UniformTypeIdentifiers
 extension Bird: Providable {
     static let writableTypes: [UTType] = [.bird]
 
-    static let readableTypes: [UTType] = [.bird, .plainText]
+    static let readableTypes: [UTType] = [.bird, .utf8PlainText, .plainText]
 
-    func data(type: UTType) async throws-> Data? {
+    func data(type: UTType) throws-> Data? {
         switch type {
         case .bird:
             return try JSONEncoder().encode(self)
@@ -27,7 +27,7 @@ extension Bird: Providable {
         switch type {
         case .bird:
             self = try JSONDecoder().decode(Bird.self, from: data)
-        case .plainText:
+        case .utf8PlainText, .plainText:
             let string = String(decoding: data, as: UTF8.self)
             self = Bird(name: string)
         default:

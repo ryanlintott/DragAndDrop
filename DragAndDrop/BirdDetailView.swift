@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct BirdDetailView: View {
     @State private var isTargeted = false
     
@@ -29,7 +30,9 @@ struct BirdDetailView: View {
             .onDrop(of: Bird.readableTypes, isTargeted: $isTargeted) { providers, location in
                 providers.reversed().loadItems(Bird.self) { bird, error in
                     if let bird {
-                        self.bird = bird
+                        Task { @MainActor in
+                            self.bird = bird
+                        }
                     }
                 }
                 return true
