@@ -10,13 +10,9 @@ import ILikeToMoveIt
 import UniformTypeIdentifiers
 
 extension Bird: Providable {
-    static var writableTypes: [UTType] {
-        [.bird]
-    }
+    static let writableTypes: [UTType] = [.bird]
 
-    static var readableTypes: [UTType] {
-        [.bird, .plainText]
-    }
+    static let readableTypes: [UTType] = [.bird, .plainText]
 
     func data(type: UTType) async throws-> Data? {
         switch type {
@@ -41,7 +37,5 @@ extension Bird: Providable {
 }
 
 extension Bird: UserActivityProvidable {
-    static var activityType: String {
-        "com.ryanlintott.draganddrop.birdDetail"
-    }
+    static let activityType = "com.ryanlintott.draganddrop.birdDetail"
 }

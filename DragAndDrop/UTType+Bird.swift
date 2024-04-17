@@ -8,5 +8,5 @@
 import UniformTypeIdentifiers
 
 extension UTType {
-    static let bird = UTType("com.ryanlintott.draganddrop.bird") ?? .data
+    static let bird = UTType(exportedAs: "com.ryanlintott.draganddrop.bird")
 }

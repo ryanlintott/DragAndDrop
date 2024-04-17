@@ -17,7 +17,8 @@ struct DraggableStringView: View {
                 .padding()
                 .onDrag { NSItemProvider(object: "StringBird" as NSString) }
             
-//            DraggableView(item: Bird(name: "StringBird"))
+            /// An attempt at a draggable view that works with VoiceOver. It seems to drag but it doesn't drop
+//            DraggableView(item: Bird(name: "StringBird"), name: "Bird")
         }
     }
 }
