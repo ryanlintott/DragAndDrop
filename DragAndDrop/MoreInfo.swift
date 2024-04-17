@@ -12,42 +12,27 @@ struct MoreInfo: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text("Providable or Transferable")
-                        .font(.title)
-                    
-                    Text(
-"""
-- Drag items to reorder.
-- Drag from one list to another.
-- While dragging tap to add additional items.
-- Drag string into list.
-- Drag strings from any app.
-- Enable VoiceOver and use move actions to move items up, down, to the top and to the bottom of the list. (iOS 15+ only. dragging between lists and apps not yet supported)
-"""
-                    )
-                    .padding(.horizontal)
-                    
-                    Text("Providable Only")
-                        .font(.title)
-                        .padding(.top)
-                    
-                    Text(
-"""
-- Drag items to make a new window on iPadOS (iOS 16+ only)
-"""
-                    )
-                    .padding(.horizontal)
-                    
-                    Spacer()
+            Form {
+                Section(header: Text("What is this?")) {
+                    Text("This app is a demo app for SwiftUI drag and drop features using iLikeToMoveIt extensions.")
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
+                
+                Section(header: Text("Using Providable or Transferable you can:")) {
+                    Text("Drag items to reorder.")
+                    Text("Drag from one list to another.")
+                    Text("While dragging tap to add additional items.")
+                    Text("Drag string into list.")
+                    Text("Drag strings from any app.")
+                    Text("Enable VoiceOver and use move actions to move items up, down, to the top and to the bottom of the list. (iOS 15+ only. dragging between lists and apps not yet supported)")
+                }
+                
+                Section(header: Text("Using Providable you can:")) {
+                    Text("Drag items to make a new window on iPadOS (iOS 16+ only)")
+                }
             }
-            .navigationTitle("More Info")
+            .navigationTitle("You like to move it?")
             .toolbar {
-                ToolbarItem(placement: .automatic) {
+                ToolbarItem {
                     Button {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
@@ -60,6 +45,7 @@ struct MoreInfo: View {
 }
 
 struct MoreInfo_Previews: PreviewProvider {
+    @MainActor
     struct PreviewData: View {
         @State private var isShowingMoreInfo = true
         

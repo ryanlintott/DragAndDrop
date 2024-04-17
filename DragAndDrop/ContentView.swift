@@ -34,26 +34,35 @@ struct ContentView: View {
                 logo
                 
                 VStack(alignment: .leading) {
-                    Text("This is a demo of SwiftUI drag and drop features along with iLikeToMoveIt extensions.")
-                    
-                    Button {
-                        isShowingMoreInfo = true
-                    } label: {
-                        Label("More Info", systemImage: "info.circle")
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(10)
-                    
-                    Picker("Protocol", selection: $dragProtocol) {
-                        ForEach(DragProtocol.allCases) { dragProtocol in
-                            Text(dragProtocol.rawValue)
+                    HStack {
+                        Picker("Protocol", selection: $dragProtocol) {
+                            ForEach(DragProtocol.allCases) { dragProtocol in
+                                Text(dragProtocol.rawValue)
+                            }
                         }
+                        .pickerStyle(.segmented)
+                        
+                        Button {
+                            isShowingMoreInfo = true
+                        } label: {
+                            Label("More Info", systemImage: "info.circle")
+                        }
+                        .labelStyle(.iconOnly)
                     }
-                    .pickerStyle(.segmented)
                     
-                    DraggableStringView()
+                    HStack {
+                        DraggableStringView()
+                    }
                 }
                 .padding(.horizontal)
+                
+                HStack {
+                    ForEach([1,2], id: \.self) { i in
+                        Text("List \(i)")
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+                .font(.headline)
                 
                 HStack {
                     switch dragProtocol {
