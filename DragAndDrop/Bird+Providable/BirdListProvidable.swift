@@ -8,7 +8,6 @@
 import ILikeToMoveIt
 import SwiftUI
 
-@MainActor
 struct BirdListProvidable: View {
     @Binding var birds: [Bird]
     @State private var isEmptyListTargeted = false

@@ -45,7 +45,6 @@ struct MoreInfo: View {
 }
 
 struct MoreInfo_Previews: PreviewProvider {
-    @MainActor
     struct PreviewData: View {
         @State private var isShowingMoreInfo = true
         
