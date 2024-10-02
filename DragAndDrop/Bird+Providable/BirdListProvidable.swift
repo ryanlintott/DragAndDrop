@@ -16,6 +16,8 @@ struct BirdListProvidable: View {
         if birds.isEmpty {
             Color.gray
                 .opacity(isEmptyListTargeted ? 0.5 : 1)
+                /// A label is added so that this view can be selected and used as a drop point. Without the label there would not be a way to focus this view and use it as a drop point.
+                .accessibilityLabel("Empty List")
                 .onDrop(of: Bird.readableTypes, isTargeted: $isEmptyListTargeted) { providers, location in
                     providers.reversed().loadItems(Bird.self) { bird, error in
                         if let bird {
@@ -26,6 +28,7 @@ struct BirdListProvidable: View {
                     }
                     return true
                 }
+            
         } else {
             List {
                 ForEach(birds) { bird in
@@ -40,11 +43,17 @@ struct BirdListProvidable: View {
                     .accessibilityHint("id: \(bird.id.uuidString)")
                     .ifAvailable {
                         if #available(iOS 16, macOS 13, *) {
-                            $0.accessibilityMoveable(bird, actions: [.up, .down, .up(3), .down(3), .toTop, .toBottom])
+                            $0
+                                .accessibilityMoveable(bird, actions: [.up, .down, .up(3), .down(3), .toTop, .toBottom])
+                                /// This drag point modifier does nothing inside a List view.
+                            //                                .accessibilityDragPoint(.center, description: "Drag \(bird.name)")
+                                /// This allows accessible dropping of items in the list. I have attempted adding a drop point aligned to .top and .bottom to drop above and below the item but the alignment does not correspond to the order in the list in any consistent way.
+                                .accessibilityDropPoint(.center, description: "Drop")
                         } else {
                             $0
                         }
                     }
+                    /// This onDrag modifier will not add a "drag" accessibility action. It will however allow adding this element to an existing drag session via the "activate" action.
                     .onDrag {
                         bird.provider
                     }

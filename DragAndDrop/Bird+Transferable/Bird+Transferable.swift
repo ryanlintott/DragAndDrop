@@ -19,6 +19,11 @@ extension Bird: Transferable {
 //            try JSONDecoder().decode(Bird.self, from: data)
 //        }
         
+        DataRepresentation(importedContentType: .utf8PlainText) { data in
+            let string = String(decoding: data, as: UTF8.self)
+            return Bird(name: string)
+        }
+        
         DataRepresentation(importedContentType: .plainText) { data in
             let string = String(decoding: data, as: UTF8.self)
             return Bird(name: string)
